@@ -1,9 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import useAxiosPublic from "../Hooks/useAxiosPublic";
+
 import Swal from "sweetalert2";
 import fbImg from '../assets/Login_Register/fb.png'
 import googleImg from '../assets/Login_Register/google 1.png'
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const SocialLogin = () => {
 

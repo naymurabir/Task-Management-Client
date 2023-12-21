@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "../../Firebase/firebase.config";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
@@ -55,6 +55,15 @@ const AuthProviders = ({ children }) => {
         }
     }, [axiosPublic, user?.email])
 
+
+    const updateUserProfile = (name, photo) => {
+        setLoading(true)
+        return updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: photo
+        })
+    }
+
     const logOut = () => {
         setLoading(true)
         return signOut(auth)
@@ -67,7 +76,8 @@ const AuthProviders = ({ children }) => {
         signInUser,
         googleLogin,
         loading,
-        logOut
+        logOut,
+        updateUserProfile
     }
 
     return (

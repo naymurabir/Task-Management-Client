@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import swal from "sweetalert";
 import SocialLogin from "../../SocialLogin/SocialLogin";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
 
@@ -41,7 +41,6 @@ const Register = () => {
                             name: data.name,
                             email: data.email
                         }
-
                         axiosPublic.post('/users', userInfo)
                             .then(res => {
                                 if (res.data.insertedId) {
