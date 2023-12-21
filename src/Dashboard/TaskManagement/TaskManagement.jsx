@@ -1,9 +1,43 @@
 import { Link } from "react-router-dom";
-import useAllTasks from "../../Hooks/useAllTasks";
+import { useEffect, useState } from "react";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useDrop } from "react-dnd";
+import TaskDragManagement from "./TaskDragManagement";
 
 const TaskManagement = () => {
 
-    const { allTasks } = useAllTasks()
+    const [allTasks, setAllTasks] = useState([]);
+    const [tasks, setTasks] = useState([]);
+    const axiosPublic = useAxiosPublic();
+    const { user } = useAuth()
+
+    useEffect(() => {
+        axiosPublic.get(`/allTasks?email=${user?.email}`).then((result) => {
+            setAllTasks(result.data);
+        });
+    }, [axiosPublic, user]);
+
+    const [{ isOver }, addToTeamRef] = useDrop({
+        accept: "player",
+        collect: (monitor) => ({ isOver: !!monitor.isOver() }),
+    });
+
+    console.log(isOver);
+    const [{ isOver: isPlayerOver }, removeTeamRef] = useDrop({
+        accept: "team",
+        collect: (monitor) => ({ isOver: !!monitor.isOver() }),
+    });
+    console.log(isPlayerOver);
+    const moveTask = (item) => {
+        console.log(item);
+        setAllTasks((prev) => prev.filter((_, i) => item.index !== i));
+        setTasks((prev) => [...prev, item]);
+    };
+    const removeTask = (item) => {
+        setTasks((prev) => prev.filter((_, i) => item.index !== i));
+        setAllTasks((prev) => [...prev, item]);
+    };
 
 
     const backgroundImageUrl = 'url("https://i.ibb.co/CPfqSdH/banner-4.jpg)';
@@ -40,30 +74,34 @@ const TaskManagement = () => {
                 <div>
                     <h1 className="bg-transparent text-white border border-white rounded font-semibold px-3 py-1 hover:bg-[#2559c7] mt-3 md:mt-0">To Do List</h1>
 
-                    <div className="mt-5">
-                        {allTasks?.map((task) => (
-                            <div key={task._id}>
-                                <div className="rounded-md shadow-md bg-purple-300 bg-opacity-60 mb-2">
-
-                                    <div className="px-6 py-3 text-white w-[250px]">
-
-                                        <h1 className="text-xl font-bold">{task.title}</h1>
-                                        <h2 className="text-base font-bold">Priority: <span className="font-normal">{task.priority}</span></h2>
-                                        {/* <h2 className="text-base font-bold">Current Date: <span className="font-normal">{task.current_date}</span></h2> */}
-                                        <h2 className="text-base font-bold">Deadline: <span className="font-normal">
-                                            {task.deadline}</span></h2>
-
-                                        <p className="text-base font-bold">Details: <span className="font-normal text-justify">
-                                            {task.task_description}</span></p>
-                                    </div>
-                                </div>
-                            </div>
+                    <div className="mt-5"
+                        ref={removeTeamRef}>
+                        {allTasks?.map((item, i) => (
+                            <TaskDragManagement
+                                item={item}
+                                key={i}
+                                playerType="player"
+                                onDropPlayer={moveTask}
+                                index={i} />
                         ))}
                     </div>
+
+
                 </div>
 
                 <div>
                     <h1 className="bg-transparent text-white border border-white rounded font-semibold px-3 py-1 hover:bg-[#2559c7] mt-3 md:mt-0">On Going List</h1>
+
+                    <div className="mt-5" ref={addToTeamRef}>
+                        {tasks?.map((item, i) => (
+                            <TaskDragManagement
+                                item={item}
+                                key={i}
+                                index={i}
+                                playerType="team"
+                                onDropPlayer={removeTask} />
+                        ))}
+                    </div>
                 </div>
 
                 <div>
