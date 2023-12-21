@@ -12,6 +12,7 @@ import CreateTask from "../Dashboard/UserPanel/CreateTask/CreateTask";
 import ToDoList from "../Dashboard/UserPanel/ToDoList/ToDoList";
 import OnGoingList from "../Dashboard/UserPanel/OnGoingList/OnGoingList";
 import CompletedTask from "../Dashboard/UserPanel/CompletedTask/CompletedTask";
+import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([{
     path: '/',
@@ -45,7 +46,7 @@ const router = createBrowserRouter([{
 },
 {
     path: '/dashboard',
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute> <Dashboard></Dashboard> </PrivateRoute>,
     children: [
         //Users Routes
         {
