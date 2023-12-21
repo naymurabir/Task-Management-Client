@@ -2,11 +2,13 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 
 const CreateTask = () => {
     const axiosPublic = useAxiosPublic()
     const { user } = useAuth()
+    const navigate = useNavigate()
 
     const {
         reset,
@@ -39,6 +41,7 @@ const CreateTask = () => {
                             showConfirmButton: false,
                             timer: 2000
                         });
+                        navigate('/dashboard/taskManagement')
                     }
                 })
         }

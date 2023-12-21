@@ -19,7 +19,7 @@ const Navbar = () => {
 
         {
             user && (
-                <NavLink to={user && "/dashboard/userDashboard"}
+                <NavLink to={user && "/dashboard/userHome"}
                     className="text-lg mr-2 font-semibold"
                 >
                     Dashboard

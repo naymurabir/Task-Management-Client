@@ -9,10 +9,8 @@ import Services from "../Pages/Services/Services";
 import Dashboard from "../Layouts/Dashboard";
 import UserDashboard from "../Dashboard/UserPanel/UserDashboard/UserDashboard";
 import CreateTask from "../Dashboard/UserPanel/CreateTask/CreateTask";
-import ToDoList from "../Dashboard/UserPanel/ToDoList/ToDoList";
-import OnGoingList from "../Dashboard/UserPanel/OnGoingList/OnGoingList";
-import CompletedTask from "../Dashboard/UserPanel/CompletedTask/CompletedTask";
 import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
+import TaskManagement from "../Dashboard/TaskManagement/TaskManagement";
 
 const router = createBrowserRouter([{
     path: '/',
@@ -50,24 +48,16 @@ const router = createBrowserRouter([{
     children: [
         //Users Routes
         {
-            path: '/dashboard/userDashboard',
+            path: '/dashboard/userHome',
             element: <UserDashboard></UserDashboard>
         },
         {
-            path: '/dashboard/CreateTask',
+            path: '/dashboard/taskManagement',
+            element: <TaskManagement></TaskManagement>
+        },
+        {
+            path: '/dashboard/createTask',
             element: <CreateTask></CreateTask>
-        },
-        {
-            path: '/dashboard/toDoList',
-            element: <ToDoList></ToDoList>
-        },
-        {
-            path: '/dashboard/onGoingList',
-            element: <OnGoingList></OnGoingList>
-        },
-        {
-            path: '/dashboard/completedTask',
-            element: <CompletedTask></CompletedTask>
         }
     ]
 }
