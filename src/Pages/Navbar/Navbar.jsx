@@ -46,7 +46,7 @@ const Navbar = () => {
 
     return (
         <nav className="">
-            <div className="navbar fixed z-10 max-w-screen-2xl bg-opacity-40 bg-purple-900 text-white">
+            <div className="navbar fixed z-10 max-w-screen-2xl bg-opacity-40 bg-black text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -58,8 +58,8 @@ const Navbar = () => {
                     </div>
 
                     <div className="flex justify-center items-center">
-                        <img className="w-24" src="" alt="" />
-                        <a className="btn btn-ghost normal-case text-base  md:text-2xl hidden lg:block">Vision Task</a>
+                        {/* <img className="w-24" src="" alt="" /> */}
+                        <a className=" text-base text-white font-bold md:text-2xl hidden lg:block">Vision Task</a>
                     </div>
                 </div>
 
@@ -79,13 +79,13 @@ const Navbar = () => {
                                     <img className="w-10 h-10 rounded-full hidden md:block" src={user?.photoURL} alt="" referrerPolicy="no-referrer" /> </div>
 
                                 <div className="flex items-center gap-1">
-                                    <button onClick={handleLogOut} className="bg-transparent text-white border border-white rounded font-semibold px-3 py-2 hover:bg-[#B4B307] ">Log Out</button>
+                                    <button onClick={handleLogOut} className="bg-[#0336a3] text-white border border-white rounded font-semibold px-3 py-2 hover:bg-[#2559c7] ">Log Out</button>
                                 </div>
                             </div>
                                 :
                                 <div className="flex items-center gap-2">
                                     <Link to="/login">
-                                        <button className="bg-transparent text-white border border-white rounded font-semibold px-3 py-2 hover:bg-[#B4B307] ">Log In</button>
+                                        <button className="bg-[#0336a3] text-white border border-white rounded font-semibold px-3 py-2 hover:bg-[#2559c7] ">Log In</button>
                                     </Link>
                                 </div>
 
