@@ -6,6 +6,12 @@ import Register from "../Pages/Register/Register";
 import Contact from "../Pages/Contact/Contact";
 import Faq from "../Pages/FAQ/Faq";
 import Services from "../Pages/Services/Services";
+import Dashboard from "../Layouts/Dashboard";
+import UserDashboard from "../Dashboard/UserPanel/UserDashboard/UserDashboard";
+import CreateTask from "../Dashboard/UserPanel/CreateTask/CreateTask";
+import ToDoList from "../Dashboard/UserPanel/ToDoList/ToDoList";
+import OnGoingList from "../Dashboard/UserPanel/OnGoingList/OnGoingList";
+import CompletedTask from "../Dashboard/UserPanel/CompletedTask/CompletedTask";
 
 const router = createBrowserRouter([{
     path: '/',
@@ -36,6 +42,34 @@ const router = createBrowserRouter([{
             element: <Faq></Faq>
         }
     ]
-}])
+},
+{
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+        //Users Routes
+        {
+            path: '/dashboard/userDashboard',
+            element: <UserDashboard></UserDashboard>
+        },
+        {
+            path: '/dashboard/CreateTask',
+            element: <CreateTask></CreateTask>
+        },
+        {
+            path: '/dashboard/toDoList',
+            element: <ToDoList></ToDoList>
+        },
+        {
+            path: '/dashboard/onGoingList',
+            element: <OnGoingList></OnGoingList>
+        },
+        {
+            path: '/dashboard/completedTask',
+            element: <CompletedTask></CompletedTask>
+        }
+    ]
+}
+])
 
 export default router
