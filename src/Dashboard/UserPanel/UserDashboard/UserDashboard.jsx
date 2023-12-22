@@ -1,10 +1,8 @@
-import useAllTasks from "../../../Hooks/useAllTasks";
 import useAuth from "../../../Hooks/useAuth";
 
 const UserDashboard = () => {
 
     const { user } = useAuth()
-    const { allTasks } = useAllTasks()
 
     return (
         <div className="max-w-screen-xl mx-auto px-2 md:px-10 lg:px-20">
@@ -24,11 +22,7 @@ const UserDashboard = () => {
                                 <h1 className="text-xl font-semibold">Email:</h1>
                                 <span className="text-xl">{user?.email}</span>
                             </div>
-                            <div className="flex gap-2 items-center">
-                                <h1 className="text-xl font-semibold">Tasks Added: {allTasks?.length} </h1>
-                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
