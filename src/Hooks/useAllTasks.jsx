@@ -7,8 +7,8 @@ const useAllTasks = () => {
 
     const { user } = useAuth()
 
-    const { data: allTasks, isPending, refetch } = useQuery({
-        queryKey: ['allTasks', user?.email],
+    const { data: totalTasks, isPending, refetch } = useQuery({
+        queryKey: ['totalTasks', user?.email],
         queryFn: async () => {
             const { data } = await axiosPublic.get(`/allTasks?email=${user?.email}`)
             return data
@@ -16,7 +16,7 @@ const useAllTasks = () => {
     })
 
 
-    return { allTasks, isPending, refetch }
+    return { totalTasks, isPending, refetch }
 };
 
 export default useAllTasks;

@@ -4,6 +4,8 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useDrop } from "react-dnd";
 import TaskDragManagement from "./TaskDragManagement";
+import Swal from "sweetalert2";
+
 
 const TaskManagement = () => {
 
@@ -53,6 +55,54 @@ const TaskManagement = () => {
         color: '#fff',
     };
 
+
+    const handleDeleteTask = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to delete?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+            background: "#07163d",
+            color: "white"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const findAllTasks = allTasks?.find(
+                    (findTaskData) => findTaskData._id === id
+                );
+                const findTaskData = tasks?.find(
+                    (findTaskData) => findTaskData._id === id
+                );
+                if (findAllTasks || findTaskData) {
+                    axiosPublic.delete(`/allTasks/${id}`).then((res) => {
+                        if (res.data.deletedCount > 0) {
+                            if (findAllTasks || findTaskData) {
+                                const remainingAllTask = allTasks?.filter(
+                                    (findTaskData) => findTaskData._id !== id
+                                );
+                                const remainingTeam = tasks?.filter(
+                                    (findTaskData) => findTaskData._id !== id
+                                );
+                                setAllTasks(remainingAllTask);
+                                setTasks(remainingTeam);
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Your task has been deleted.",
+                                    icon: "success",
+                                    background: "#07163d",
+                                    color: "white"
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    };
+
+
     return (
         <div style={styles}>
             <div className="text-center mt-5">
@@ -82,7 +132,7 @@ const TaskManagement = () => {
                                 key={i}
                                 playerType="player"
                                 onDropPlayer={moveTask}
-                                index={i} />
+                                index={i} handleDeleteTask={handleDeleteTask} />
                         ))}
                     </div>
 
@@ -99,7 +149,8 @@ const TaskManagement = () => {
                                 key={i}
                                 index={i}
                                 playerType="team"
-                                onDropPlayer={removeTask} />
+                                onDropPlayer={removeTask}
+                                handleDeleteTask={handleDeleteTask} />
                         ))}
                     </div>
                 </div>

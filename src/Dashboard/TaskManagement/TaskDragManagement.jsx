@@ -1,6 +1,6 @@
 import { useDrag } from "react-dnd";
 
-const TaskDragManagement = ({ item, playerType, index, onDropPlayer, }) => {
+const TaskDragManagement = ({ item, playerType, index, onDropPlayer, handleDeleteTask }) => {
 
     const [{ isDragging }, dragRef] = useDrag({
         type: playerType,
@@ -18,7 +18,7 @@ const TaskDragManagement = ({ item, playerType, index, onDropPlayer, }) => {
         }),
     });
 
-    const { title, priority, task_description, deadline } = item
+    const { _id, title, priority, task_description, deadline } = item
 
     return (
         <div ref={dragRef} className="rounded-md shadow-md bg-black bg-opacity-60 mb-2">
@@ -33,7 +33,7 @@ const TaskDragManagement = ({ item, playerType, index, onDropPlayer, }) => {
                     {task_description}</span></p>
 
                 <div className="mt-4">
-                    <button className="bg-transparent text-white border border-white rounded font-semibold px-3 py-1 hover:bg-[#c72525] w-full">Delete</button>
+                    <button onClick={() => handleDeleteTask(_id)} className="bg-transparent text-white border border-white rounded font-semibold px-3 py-1 hover:bg-[#c72525] w-full">Delete</button>
 
                     <button className="bg-transparent text-white border border-white rounded font-semibold px-3 py-1 hover:bg-[#eb992f] mt-3 w-full">Update</button>
                 </div>
