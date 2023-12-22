@@ -63,7 +63,7 @@ const router = createBrowserRouter([{
         {
             path: '/dashboard/updateTask/:id',
             element: <UpdateTask></UpdateTask>,
-            loader: ({ params }) => fetch(`http://localhost:5000/updateTask/${params.id}`)
+            loader: ({ params }) => fetch(`https://task-management-server-fawn.vercel.app/updateTask/${params.id}`)
         }
     ]
 }

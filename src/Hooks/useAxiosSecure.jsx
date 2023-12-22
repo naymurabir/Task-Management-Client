@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://task-management-server-fawn.vercel.app',
 })
 
 
@@ -28,6 +28,7 @@ const useAxiosSecure = () => {
                 console.log('log out')
                 navigate('/login')
             }
+
             return Promise.reject(error);
         });
     }, [logOut, navigate])

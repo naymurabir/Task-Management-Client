@@ -7,7 +7,7 @@ import user4 from '../../assets/Website_Users/user4.jpg'
 const UserTypes = () => {
     return (
         <div className='my-5 max-w-screen-xl mx-auto px-2 md:px-10 lg:px-20'>
-            <div className="bg-[#0f068a] text-white px-5 py-8">
+            <div className="bg-gray-800 text-white px-5 py-8">
                 <div className="text-center">
                     <h1 className="text-4xl font-bold">Benefitted Users</h1>
                     <p className='text-sm'>The task management website streamlined workflows, enhancing <br />productivity by providing users with intuitive features for efficient task organization.</p>
