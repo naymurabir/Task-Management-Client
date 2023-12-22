@@ -1,4 +1,5 @@
 import { useDrag } from "react-dnd";
+import { Link } from "react-router-dom";
 
 const TaskDragManagement = ({ item, playerType, index, onDropPlayer, handleDeleteTask }) => {
 
@@ -35,7 +36,9 @@ const TaskDragManagement = ({ item, playerType, index, onDropPlayer, handleDelet
                 <div className="mt-4">
                     <button onClick={() => handleDeleteTask(_id)} className="bg-transparent text-white border border-white rounded font-semibold px-3 py-1 hover:bg-[#c72525] w-full">Delete</button>
 
-                    <button className="bg-transparent text-white border border-white rounded font-semibold px-3 py-1 hover:bg-[#eb992f] mt-3 w-full">Update</button>
+                    <Link to={`/dashboard/updateTask/${_id}`} >
+                        <button className="bg-transparent text-white border border-white rounded font-semibold px-3 py-1 hover:bg-[#eb992f] mt-3 w-full">Update</button>
+                    </Link>
                 </div>
             </div>
         </div>

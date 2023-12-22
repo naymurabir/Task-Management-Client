@@ -11,6 +11,7 @@ import UserDashboard from "../Dashboard/UserPanel/UserDashboard/UserDashboard";
 import CreateTask from "../Dashboard/UserPanel/CreateTask/CreateTask";
 import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 import TaskManagement from "../Dashboard/TaskManagement/TaskManagement";
+import UpdateTask from "../Dashboard/UserPanel/UpdateTask/UpdateTask";
 
 const router = createBrowserRouter([{
     path: '/',
@@ -58,6 +59,11 @@ const router = createBrowserRouter([{
         {
             path: '/dashboard/createTask',
             element: <CreateTask></CreateTask>
+        },
+        {
+            path: '/dashboard/updateTask/:id',
+            element: <UpdateTask></UpdateTask>,
+            loader: ({ params }) => fetch(`http://localhost:5000/updateTask/${params.id}`)
         }
     ]
 }
