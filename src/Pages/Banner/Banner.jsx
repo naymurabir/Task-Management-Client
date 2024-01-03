@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Banner = () => {
     return (
         <div className="hero h-[450px] md:h-[500px] lg:h-[600px]" style={{ backgroundImage: 'url(https://i.ibb.co/x7TQT6L/banner2.jpg)' }}>
-            <div className="hero-overlay bg-opacity-30"></div>
+            <div className="hero-overlay bg-black bg-opacity-40"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="max-w-md">
                     <h1 className="mb-5 text-3xl md:text-4xl lg:text-5xl text-white font-bold">Productivity Meets Precision Here</h1>

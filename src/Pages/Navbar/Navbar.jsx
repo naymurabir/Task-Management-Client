@@ -13,7 +13,7 @@ const Navbar = () => {
 
         <NavLink to="/services" className="text-lg mr-2 font-semibold"> Services</NavLink>
 
-        <NavLink to="/contactUs" className="text-lg mr-2 font-semibold"> Contact Us</NavLink>
+        {/* <NavLink to="/contactUs" className="text-lg mr-2 font-semibold"> Contact Us</NavLink> */}
 
         <NavLink to="/faq" className="text-lg mr-2 font-semibold">FAQ</NavLink>
 
